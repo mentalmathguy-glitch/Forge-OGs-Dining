@@ -476,7 +476,45 @@
       color: var(--text-muted);
     }
 
-    /* List View Toggle Button */
+    /* View Switcher Pill Controls */
+    .view-switcher-pill-group {
+      display: inline-flex;
+      align-items: center;
+      background: var(--input-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .view-switch-btn {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .view-switch-btn:hover {
+      color: var(--text-main);
+    }
+
+    .view-switch-btn.active {
+      background: #192233;
+      color: var(--neon-cyan);
+      border-color: var(--neon-cyan-border);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+    }
+
+    /* List View Toggle Button in Search Panel */
     .btn-view-toggle {
       height: 46px;
       background: var(--input-bg);
@@ -505,41 +543,120 @@
       background: var(--neon-cyan-bg);
     }
 
-    /* Neon Cyan Distance Badge */
-    .spot-distance-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.75rem;
+    /* Neon Cyan Distance Badge (Inline with Swipe Tags) */
+    .badge-distance-tag {
+      font-size: 0.72rem;
       font-weight: 700;
       color: var(--neon-cyan);
       background: var(--neon-cyan-bg);
       border: 1px solid var(--neon-cyan-border);
-      padding: 3px 9px;
-      border-radius: 6px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
       text-decoration: none;
       cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.12);
+      transition: all 0.2s;
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.15);
       white-space: nowrap;
     }
 
-    .spot-distance-tag:hover {
-      background: rgba(0, 240, 255, 0.20);
+    .badge-distance-tag:hover {
+      background: rgba(0, 240, 255, 0.22);
       border-color: var(--neon-cyan);
       color: #ffffff;
-      box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
     }
 
-    .spot-distance-tag.spot-distance-prompt {
-      opacity: 0.85;
+    .badge-distance-tag.badge-distance-prompt {
+      opacity: 0.88;
     }
 
-    .spot-distance-tag.spot-distance-prompt:hover {
+    .badge-distance-tag.badge-distance-prompt:hover {
       opacity: 1;
     }
 
-    /* List View Styling */
+    /* Minimalist Time Slider */
+    .time-slider-wrapper {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: var(--input-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+    }
+
+    .slider-label-text {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .slider-val-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      background: var(--neon-cyan-bg);
+      border: 1px solid var(--neon-cyan-border);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .minimal-time-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #182232 0%, #25334a 100%);
+      outline: none;
+      cursor: pointer;
+      margin: 8px 0 6px;
+    }
+
+    .minimal-time-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--neon-cyan);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .minimal-time-slider::-webkit-slider-thumb:hover,
+    .minimal-time-slider::-webkit-slider-thumb:active {
+      transform: scale(1.25);
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.9);
+    }
+
+    .minimal-time-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--neon-cyan);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+      cursor: pointer;
+    }
+
+    .timeline-ticks-rail {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.66rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-dim);
+      padding: 0 2px;
+    }
+
+    /* List View Styling (Mobile & Desktop) */
     #directoryCardGrid.list-view .spot-col {
       flex: 0 0 100%;
       max-width: 100%;
@@ -548,6 +665,23 @@
 
     #directoryCardGrid.list-view .directory-card {
       border-radius: 10px;
+    }
+
+    #directoryCardGrid.list-view .card-top-bar {
+      padding: 10px 14px;
+    }
+
+    #directoryCardGrid.list-view .card-body-content {
+      padding: 12px 16px;
+      gap: 8px;
+    }
+
+    #directoryCardGrid.list-view .spot-heading {
+      font-size: 1.05rem;
+    }
+
+    #directoryCardGrid.list-view .hours-info-strip {
+      padding: 5px 10px;
     }
 
     /* Mobile Responsive Optimizations */
@@ -597,6 +731,14 @@
       }
       .btn-view-toggle {
         padding: 0 10px;
+      }
+      .directory-view-control-bar {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 8px;
+      }
+      .directory-view-control-bar .view-switcher-pill-group {
+        align-self: flex-end;
       }
     }
 
@@ -1321,12 +1463,31 @@
           <div class="time-bar-actions">
             <button class="btn-live-toggle active" id="btnLiveReset"><i class="bi bi-broadcast"></i> Live Now</button>
             <button class="btn-adjust-drawer-toggle" id="btnAdjustDrawerToggle" onclick="toggleTimeDrawer()">
-              <span id="labelAdjustToggle">Change Day / Time</span>
+              <span id="labelAdjustToggle">Day / Presets</span>
               <i class="bi bi-chevron-down" id="arrowAdjustToggle"></i>
             </button>
           </div>
         </div>
 
+        <!-- Minimalist Scrub Slider -->
+        <div class="time-slider-wrapper">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="slider-label-text"><i class="bi bi-sliders"></i> Scrub Schedule Time</span>
+            <span class="slider-val-badge" id="sliderTimeDisplay">12:00 PM</span>
+          </div>
+          <input type="range" min="0" max="1439" step="5" value="720" class="minimal-time-slider" id="timeSlider" aria-label="Scrub Time Slider">
+          <div class="timeline-ticks-rail">
+            <span>12 AM</span>
+            <span>4 AM</span>
+            <span>8 AM</span>
+            <span>12 PM</span>
+            <span>4 PM</span>
+            <span>8 PM</span>
+            <span>11 PM</span>
+          </div>
+        </div>
+
+        <!-- Day Picker & Quick Presets Drawer -->
         <div class="time-drawer-panel" id="timeDrawerPanel">
           <div class="days-picker-grid">
             <button class="day-selector-btn" data-day="Monday">Mon</button>
@@ -1346,19 +1507,33 @@
               <button class="preset-pill" data-time="1320">Late Night (10:00 PM)</button>
             </div>
             <div class="d-flex align-items-center gap-2">
-              <span style="font-size: 0.72rem; color: var(--text-dim);">Custom Time:</span>
+              <span style="font-size: 0.72rem; color: var(--text-dim);">Custom:</span>
               <input type="time" id="customTimeInput" class="time-input-field" value="12:00">
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Results Stats Header -->
-      <div class="d-flex align-items-center justify-content-between mb-3 px-1">
-        <span style="font-size: 0.82rem; color: var(--text-muted);">
-          Showing <strong id="visibleSpotsCount" style="color: var(--text-main);">0</strong> locations
-        </span>
-        <span id="activeModeSummary" style="font-size: 0.78rem; color: var(--text-dim);">Dining & Cafes</span>
+      <!-- Results Stats & Mobile-Friendly View Switcher Header -->
+      <div class="directory-view-control-bar d-flex align-items-center justify-content-between mb-3 px-1">
+        <div class="d-flex align-items-center gap-2">
+          <span style="font-size: 0.82rem; color: var(--text-muted);">
+            Showing <strong id="visibleSpotsCount" style="color: var(--text-main);">0</strong> locations
+          </span>
+          <span style="color: var(--text-dim); font-size: 0.7rem;">•</span>
+          <span id="activeModeSummary" style="font-size: 0.78rem; color: var(--neon-cyan); font-weight: 600;">Dining & Cafes</span>
+        </div>
+
+        <div class="view-switcher-pill-group">
+          <button class="view-switch-btn active" id="btnSwitchGrid" title="Grid Layout">
+            <i class="bi bi-grid-fill"></i>
+            <span>Grid</span>
+          </button>
+          <button class="view-switch-btn" id="btnSwitchList" title="List Layout">
+            <i class="bi bi-list-ul"></i>
+            <span>List</span>
+          </button>
+        </div>
       </div>
 
       <!-- Directory Card Grid -->
@@ -6933,9 +7108,15 @@ const SPOTS_DATA = [
     const display = document.getElementById('displayScheduleTime');
     const dayDisplay = document.getElementById('displayScheduleDay');
     const input = document.getElementById('customTimeInput');
-    if (display) display.textContent = formatTime12h(minutes);
+    const slider = document.getElementById('timeSlider');
+    const sliderDisplay = document.getElementById('sliderTimeDisplay');
+
+    const formatted12 = formatTime12h(minutes);
+    if (display) display.textContent = formatted12;
     if (dayDisplay) dayDisplay.textContent = isLiveMode ? `Today (${DAY_SHORTS[currentSelectedDay]})` : currentSelectedDay;
     if (input) input.value = formatTime24h(minutes);
+    if (slider && parseInt(slider.value, 10) !== minutes) slider.value = minutes;
+    if (sliderDisplay) sliderDisplay.textContent = formatted12;
   }
 
   function setLiveTime() {
@@ -7275,30 +7456,27 @@ const SPOTS_DATA = [
           <div class="card-body-content">
             <h3 class="spot-heading"><a href="${mapsUrl}" target="_blank" rel="noopener noreferrer">${displayName}</a></h3>
 
-            <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
-              ${spot.zone ? `
-                <div class="spot-location-meta">
-                  <i class="bi bi-geo-alt"></i>
-                  <span>${spot.zone}</span>
-                </div>
-              ` : '<div></div>'}
-
-              ${spot.distanceStr ? `
-                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="spot-distance-tag" title="Open walking directions in Google Maps">
-                  <i class="bi bi-geo-alt-fill"></i>
-                  <span>${spot.distanceStr}</span>
-                </a>
-              ` : `
-                <button class="spot-distance-tag spot-distance-prompt" onclick="requestUserLocation(false); event.stopPropagation();" title="Click to calculate live walking distance">
-                  <i class="bi bi-crosshair"></i>
-                  <span>Distance</span>
-                </button>
-              `}
-            </div>
+            ${spot.zone ? `
+              <div class="spot-location-meta">
+                <i class="bi bi-geo-alt"></i>
+                <span>${spot.zone}</span>
+              </div>
+            ` : ''}
 
             <div class="swipes-container">
               ${spot.acceptsBasicSwipe ? `<span class="badge-basic-tag"><i class="bi bi-check2-circle"></i> Basic Swipe</span>` : ''}
               ${spot.acceptsPlusSwipe ? `<span class="badge-plus-tag"><i class="bi bi-lightning-charge"></i> PLUS+ Swipe</span>` : ''}
+              ${spot.distanceStr ? `
+                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="badge-distance-tag" title="Open walking directions in Google Maps">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <span>${spot.distanceStr}</span>
+                </a>
+              ` : `
+                <button class="badge-distance-tag badge-distance-prompt" onclick="requestUserLocation(false); event.stopPropagation();" title="Click to calculate live walking distance">
+                  <i class="bi bi-crosshair"></i>
+                  <span>Distance</span>
+                </button>
+              `}
             </div>
 
             ${spot.cuisine ? `<p class="cuisine-description-text mb-0">${spot.cuisine}</p>` : ''}
@@ -7381,6 +7559,18 @@ const SPOTS_DATA = [
     });
   });
 
+  const timeSlider = document.getElementById('timeSlider');
+  if (timeSlider) {
+    timeSlider.addEventListener('input', (e) => {
+      isLiveMode = false;
+      const liveBtn = document.getElementById('btnLiveReset');
+      if (liveBtn) liveBtn.classList.remove('active');
+      const val = parseInt(e.target.value, 10);
+      updateTimeDisplay(val);
+      render();
+    });
+  }
+
   const customTime = document.getElementById('customTimeInput');
   if (customTime) {
     customTime.addEventListener('change', (e) => {
@@ -7440,37 +7630,43 @@ const SPOTS_DATA = [
     });
   }
 
-  const viewToggleBtn = document.getElementById('btnViewToggle');
-  const viewToggleIcon = document.getElementById('viewToggleIcon');
-  const viewToggleLabel = document.getElementById('viewToggleLabel');
+  // View Switcher Handlers (Grid / List)
   let isListView = false;
 
-  if (viewToggleBtn) {
-    viewToggleBtn.addEventListener('click', () => {
-      isListView = !isListView;
-      const grid = document.getElementById('directoryCardGrid');
-      if (grid) {
-        grid.classList.toggle('list-view', isListView);
-      }
-      viewToggleBtn.classList.toggle('active', isListView);
-      if (viewToggleIcon) {
-        viewToggleIcon.className = isListView ? 'bi bi-grid-fill' : 'bi bi-list-ul';
-      }
-      if (viewToggleLabel) {
-        viewToggleLabel.textContent = isListView ? 'Grid' : 'List';
-      }
-    });
+  function setViewMode(isList) {
+    isListView = isList;
+    const grid = document.getElementById('directoryCardGrid');
+    if (grid) grid.classList.toggle('list-view', isListView);
+
+    const btnToggle = document.getElementById('btnViewToggle');
+    const toggleIcon = document.getElementById('viewToggleIcon');
+    const toggleLabel = document.getElementById('viewToggleLabel');
+    if (btnToggle) btnToggle.classList.toggle('active', isListView);
+    if (toggleIcon) toggleIcon.className = isListView ? 'bi bi-grid-fill' : 'bi bi-list-ul';
+    if (toggleLabel) toggleLabel.textContent = isListView ? 'Grid' : 'List';
+
+    const btnGrid = document.getElementById('btnSwitchGrid');
+    const btnList = document.getElementById('btnSwitchList');
+    if (btnGrid) btnGrid.classList.toggle('active', !isListView);
+    if (btnList) btnList.classList.toggle('active', isListView);
   }
+
+  const btnSwitchGrid = document.getElementById('btnSwitchGrid');
+  const btnSwitchList = document.getElementById('btnSwitchList');
+  const btnViewToggle = document.getElementById('btnViewToggle');
+
+  if (btnSwitchGrid) btnSwitchGrid.addEventListener('click', () => setViewMode(false));
+  if (btnSwitchList) btnSwitchList.addEventListener('click', () => setViewMode(true));
+  if (btnViewToggle) btnViewToggle.addEventListener('click', () => setViewMode(!isListView));
 
   // Initialize
   setLiveTime();
   updateClock();
 
-  try {
-    if (localStorage.getItem('forge_geo_allowed') === 'true' || navigator.permissions) {
-      requestUserLocation(true);
-    }
-  } catch(e) {}
+  // Automatically prompt for location when site opens
+  if (navigator.geolocation) {
+    requestUserLocation(false);
+  }
   </script>
 </body>
 </html>
