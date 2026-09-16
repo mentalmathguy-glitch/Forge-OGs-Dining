@@ -577,33 +577,52 @@
       opacity: 1;
     }
 
-    /* Minimalist Time Slider */
-    .time-slider-wrapper {
-      margin-top: 10px;
-      padding: 10px 12px;
-      background: var(--input-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-    }
-
-    .slider-label-text {
-      font-size: 0.74rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .slider-val-badge {
+    /* Consolidated Interactive Time Display Box */
+    .time-display-interactive {
+      position: relative;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
       font-weight: 700;
       color: var(--neon-cyan);
       background: var(--neon-cyan-bg);
       border: 1px solid var(--neon-cyan-border);
-      padding: 2px 8px;
-      border-radius: 4px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.15);
+      margin: 0;
+    }
+
+    .time-display-interactive:hover {
+      background: rgba(0, 240, 255, 0.18);
+      border-color: var(--neon-cyan);
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+    }
+
+    .custom-time-hidden-picker {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      z-index: 2;
+    }
+
+    /* Minimalist Time Slider Track */
+    .time-slider-wrapper {
+      margin-top: 10px;
+      padding: 8px 12px 6px;
+      background: var(--input-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
     }
 
     .minimal-time-slider {
@@ -1523,7 +1542,12 @@
             <i class="bi bi-clock"></i>
             <span>Showing hours for:</span>
             <span class="time-display-pill" id="displayScheduleDay">Today (Mon)</span>
-            <span class="time-display-pill" id="displayScheduleTime">12:00 PM</span>
+
+            <!-- Consolidated Blue Interactive Time Box -->
+            <label class="time-display-interactive" id="interactiveTimeBox" title="Click to enter custom time">
+              <span id="displayScheduleTime">12:00 PM</span>
+              <input type="time" id="customTimeInput" class="custom-time-hidden-picker" value="12:00" aria-label="Enter Custom Time">
+            </label>
           </div>
           <div class="time-bar-actions">
             <button class="btn-live-toggle active" id="btnLiveReset"><i class="bi bi-broadcast"></i> Live Now</button>
@@ -1534,12 +1558,8 @@
           </div>
         </div>
 
-        <!-- Minimalist Scrub Slider -->
+        <!-- Minimalist Scrub Slider (Single Clean Track) -->
         <div class="time-slider-wrapper">
-          <div class="d-flex justify-content-between align-items-center mb-1">
-            <span class="slider-label-text"><i class="bi bi-sliders"></i> Scrub Schedule Time</span>
-            <span class="slider-val-badge" id="sliderTimeDisplay">12:00 PM</span>
-          </div>
           <input type="range" min="0" max="1439" step="5" value="720" class="minimal-time-slider" id="timeSlider" aria-label="Scrub Time Slider">
           <div class="timeline-ticks-rail">
             <span>12 AM</span>
@@ -1570,10 +1590,6 @@
               <button class="preset-pill" data-time="750">Lunch (12:30 PM)</button>
               <button class="preset-pill" data-time="1110">Dinner (6:30 PM)</button>
               <button class="preset-pill" data-time="1320">Late Night (10:00 PM)</button>
-            </div>
-            <div class="d-flex align-items-center gap-2">
-              <span style="font-size: 0.72rem; color: var(--text-dim);">Custom:</span>
-              <input type="time" id="customTimeInput" class="time-input-field" value="12:00">
             </div>
           </div>
         </div>
@@ -7174,14 +7190,12 @@ const SPOTS_DATA = [
     const dayDisplay = document.getElementById('displayScheduleDay');
     const input = document.getElementById('customTimeInput');
     const slider = document.getElementById('timeSlider');
-    const sliderDisplay = document.getElementById('sliderTimeDisplay');
 
     const formatted12 = formatTime12h(minutes);
     if (display) display.textContent = formatted12;
     if (dayDisplay) dayDisplay.textContent = isLiveMode ? `Today (${DAY_SHORTS[currentSelectedDay]})` : currentSelectedDay;
     if (input) input.value = formatTime24h(minutes);
     if (slider && parseInt(slider.value, 10) !== minutes) slider.value = minutes;
-    if (sliderDisplay) sliderDisplay.textContent = formatted12;
   }
 
   function setLiveTime() {
@@ -7641,8 +7655,20 @@ const SPOTS_DATA = [
   }
 
   const customTime = document.getElementById('customTimeInput');
+  const interactiveTimeBox = document.getElementById('interactiveTimeBox');
+
+  if (interactiveTimeBox && customTime) {
+    interactiveTimeBox.addEventListener('click', (e) => {
+      try {
+        if (customTime.showPicker) {
+          customTime.showPicker();
+        }
+      } catch(err) {}
+    });
+  }
+
   if (customTime) {
-    customTime.addEventListener('change', (e) => {
+    const handleCustomTime = (e) => {
       const parsed = parseTime24hToMinutes(e.target.value);
       if (parsed !== null) {
         isLiveMode = false;
@@ -7651,7 +7677,9 @@ const SPOTS_DATA = [
         updateTimeDisplay(parsed);
         render();
       }
-    });
+    };
+    customTime.addEventListener('input', handleCustomTime);
+    customTime.addEventListener('change', handleCustomTime);
   }
 
   const liveResetBtn = document.getElementById('btnLiveReset');
