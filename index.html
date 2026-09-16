@@ -5269,14 +5269,20 @@ const SPOTS_DATA = [
         "name": "SubConnection",
         "cuisine": "Custom Subs & Wraps",
         "schedule": {
-            "Thursday": {
+            "Monday": {
                 "closed": false,
-                "open": 660,
+                "open": 450,
                 "close": 1320,
-                "displayStr": "11:00 AM - 10:00 PM",
-                "openStr": "11:00 AM",
+                "displayStr": "7:30 AM - 10:30 AM, 11:00 AM - 10:00 PM",
+                "openStr": "7:30 AM",
                 "closeStr": "10:00 PM",
                 "intervals": [
+                    {
+                        "open": 450,
+                        "close": 630,
+                        "openStr": "7:30 AM",
+                        "closeStr": "10:30 AM"
+                    },
                     {
                         "open": 660,
                         "close": 1320,
@@ -5287,12 +5293,78 @@ const SPOTS_DATA = [
             },
             "Tuesday": {
                 "closed": false,
-                "open": 660,
+                "open": 450,
                 "close": 1320,
-                "displayStr": "11:00 AM - 10:00 PM",
-                "openStr": "11:00 AM",
+                "displayStr": "7:30 AM - 10:30 AM, 11:00 AM - 10:00 PM",
+                "openStr": "7:30 AM",
                 "closeStr": "10:00 PM",
                 "intervals": [
+                    {
+                        "open": 450,
+                        "close": 630,
+                        "openStr": "7:30 AM",
+                        "closeStr": "10:30 AM"
+                    },
+                    {
+                        "open": 660,
+                        "close": 1320,
+                        "openStr": "11:00 AM",
+                        "closeStr": "10:00 PM"
+                    }
+                ]
+            },
+            "Wednesday": {
+                "closed": false,
+                "open": 660,
+                "close": 1305,
+                "displayStr": "11:00 AM - 9:45 PM",
+                "openStr": "11:00 AM",
+                "closeStr": "9:45 PM",
+                "intervals": [
+                    {
+                        "open": 660,
+                        "close": 1305,
+                        "openStr": "11:00 AM",
+                        "closeStr": "9:45 PM"
+                    }
+                ]
+            },
+            "Thursday": {
+                "closed": false,
+                "open": 450,
+                "close": 1320,
+                "displayStr": "7:30 AM - 10:30 AM, 11:00 AM - 10:00 PM",
+                "openStr": "7:30 AM",
+                "closeStr": "10:00 PM",
+                "intervals": [
+                    {
+                        "open": 450,
+                        "close": 630,
+                        "openStr": "7:30 AM",
+                        "closeStr": "10:30 AM"
+                    },
+                    {
+                        "open": 660,
+                        "close": 1320,
+                        "openStr": "11:00 AM",
+                        "closeStr": "10:00 PM"
+                    }
+                ]
+            },
+            "Friday": {
+                "closed": false,
+                "open": 450,
+                "close": 1320,
+                "displayStr": "7:30 AM - 10:30 AM, 11:00 AM - 10:00 PM",
+                "openStr": "7:30 AM",
+                "closeStr": "10:00 PM",
+                "intervals": [
+                    {
+                        "open": 450,
+                        "close": 630,
+                        "openStr": "7:30 AM",
+                        "closeStr": "10:30 AM"
+                    },
                     {
                         "open": 660,
                         "close": 1320,
@@ -5302,38 +5374,6 @@ const SPOTS_DATA = [
                 ]
             },
             "Saturday": {
-                "closed": false,
-                "open": 720,
-                "close": 1260,
-                "displayStr": "12:00 PM - 9:00 PM",
-                "closeStr": "9:00 PM",
-                "openStr": "12:00 PM",
-                "intervals": [
-                    {
-                        "close": 1260,
-                        "closeStr": "9:00 PM",
-                        "openStr": "12:00 PM",
-                        "open": 720
-                    }
-                ]
-            },
-            "Wednesday": {
-                "closed": false,
-                "open": 660,
-                "close": 1305,
-                "displayStr": "11:00 AM - 9:45 PM",
-                "closeStr": "9:45 PM",
-                "openStr": "11:00 AM",
-                "intervals": [
-                    {
-                        "close": 1305,
-                        "closeStr": "9:45 PM",
-                        "openStr": "11:00 AM",
-                        "open": 660
-                    }
-                ]
-            },
-            "Sunday": {
                 "closed": false,
                 "open": 720,
                 "close": 1260,
@@ -5349,35 +5389,19 @@ const SPOTS_DATA = [
                     }
                 ]
             },
-            "Friday": {
+            "Sunday": {
                 "closed": false,
-                "open": 660,
-                "close": 1320,
-                "displayStr": "11:00 AM - 10:00 PM",
-                "openStr": "11:00 AM",
-                "closeStr": "10:00 PM",
+                "open": 780,
+                "close": 1260,
+                "displayStr": "1:00 PM - 9:00 PM",
+                "openStr": "1:00 PM",
+                "closeStr": "9:00 PM",
                 "intervals": [
                     {
-                        "open": 660,
-                        "close": 1320,
-                        "openStr": "11:00 AM",
-                        "closeStr": "10:00 PM"
-                    }
-                ]
-            },
-            "Monday": {
-                "closed": false,
-                "open": 660,
-                "close": 1320,
-                "displayStr": "11:00 AM - 10:00 PM",
-                "openStr": "11:00 AM",
-                "closeStr": "10:00 PM",
-                "intervals": [
-                    {
-                        "open": 660,
-                        "close": 1320,
-                        "openStr": "11:00 AM",
-                        "closeStr": "10:00 PM"
+                        "open": 780,
+                        "close": 1260,
+                        "openStr": "1:00 PM",
+                        "closeStr": "9:00 PM"
                     }
                 ]
             }
@@ -7208,6 +7232,7 @@ const SPOTS_DATA = [
       return { status: 'closed', badgeText: 'Closed Today', badgeClass: 'closed', minLeft: null };
     }
 
+    // 1. Check if currently open in any shift
     for (let i = 0; i < intervals.length; i++) {
       const itv = intervals[i];
       let isOpen = false;
@@ -7226,27 +7251,56 @@ const SPOTS_DATA = [
       }
 
       if (isOpen) {
+        const nextShift = (i + 1 < intervals.length) ? intervals[i + 1] : null;
         if (minUntilClose <= 45) {
-          return { status: 'warning', badgeText: `Closes in ${minUntilClose}m`, badgeClass: 'warning', minLeft: minUntilClose };
+          const reopenNote = nextShift ? ` (Reopens ${nextShift.openStr})` : '';
+          return {
+            status: 'warning',
+            badgeText: `Closes in ${minUntilClose}m${reopenNote}`,
+            badgeClass: 'warning',
+            minLeft: minUntilClose
+          };
         } else {
-          return { status: 'open', badgeText: `Open until ${itv.closeStr}`, badgeClass: 'open', minLeft: minUntilClose };
+          return {
+            status: 'open',
+            badgeText: `Open until ${itv.closeStr}`,
+            badgeClass: 'open',
+            minLeft: minUntilClose
+          };
         }
       }
     }
 
+    // 2. Not currently open: check upcoming shift today (e.g. afternoon re-opening)
     for (let i = 0; i < intervals.length; i++) {
       const itv = intervals[i];
       if (itv.open > testMinute) {
         const minUntilOpen = itv.open - testMinute;
         if (minUntilOpen <= 60) {
-          return { status: 'closed', badgeText: `Opens in ${minUntilOpen}m`, badgeClass: 'closed', minLeft: null };
+          return {
+            status: 'closed',
+            badgeText: `Opens in ${minUntilOpen}m (${itv.openStr})`,
+            badgeClass: 'closed',
+            minLeft: null
+          };
         } else {
-          return { status: 'closed', badgeText: `Opens at ${itv.openStr}`, badgeClass: 'closed', minLeft: null };
+          return {
+            status: 'closed',
+            badgeText: `Closed • Opens at ${itv.openStr}`,
+            badgeClass: 'closed',
+            minLeft: null
+          };
         }
       }
     }
 
-    return { status: 'closed', badgeText: 'Closed for the day', badgeClass: 'closed', minLeft: null };
+    // 3. All shifts for today have finished
+    return {
+      status: 'closed',
+      badgeText: 'Closed for the day',
+      badgeClass: 'closed',
+      minLeft: null
+    };
   }
 
   function highlightMatch(text, query) {
@@ -7462,21 +7516,63 @@ const SPOTS_DATA = [
       col.className = 'col-xl-4 col-lg-4 col-md-6 col-sm-12 spot-col';
 
       const sched = spot.schedule[currentSelectedDay];
-      const todayHoursDisplay = (sched && !sched.closed)
-        ? (sched.displayStr || `${sched.openStr} - ${sched.closeStr}`)
-        : 'Closed Today';
+      let todayHoursDisplay = 'Closed Today';
+      if (sched && !sched.closed) {
+        const itvs = (sched.intervals && sched.intervals.length > 0)
+          ? sched.intervals
+          : ((sched.open !== null && sched.close !== null) ? [{ openStr: sched.openStr, closeStr: sched.closeStr }] : []);
+        if (itvs.length > 0) {
+          todayHoursDisplay = itvs.map(itv => `${itv.openStr} - ${itv.closeStr}`).join(', ');
+        }
+      }
 
       const isExpanded = openDrawers.has(spot.id);
 
-      let weeklyRows = '';
+      let weeklyRows = `
+        <div class="weekly-tray-header-meta">
+          <span>Schedule & Shifts</span>
+          <span>12a · · 6a · · 12p · · 6p · · 12a</span>
+        </div>
+      `;
+
       dayOrder.forEach(d => {
         const s = spot.schedule[d];
         const isToday = (d === currentSelectedDay);
-        const hStr = (s && !s.closed) ? (s.displayStr || `${s.openStr} - ${s.closeStr}`) : 'Closed';
+        const isClosed = !s || s.closed;
+        const intervals = (!isClosed && s.intervals && s.intervals.length > 0)
+          ? s.intervals
+          : ((!isClosed && s.open !== null && s.close !== null) ? [{ open: s.open, close: s.close, openStr: s.openStr, closeStr: s.closeStr }] : []);
+
+        let hStr = 'Closed';
+        let segmentsHtml = '';
+        if (!isClosed && intervals.length > 0) {
+          hStr = intervals.map(itv => `${itv.openStr} - ${itv.closeStr}`).join(', ');
+          intervals.forEach(itv => {
+            let leftPct = (itv.open / 1440) * 100;
+            let widthPct = 0;
+            if (itv.close >= itv.open) {
+              widthPct = ((itv.close - itv.open) / 1440) * 100;
+            } else {
+              widthPct = ((1440 - itv.open + itv.close) / 1440) * 100;
+            }
+            segmentsHtml += `<div class="mini-bar-segment-open" style="left: ${leftPct}%; width: ${widthPct}%;"></div>`;
+          });
+        }
+
+        const cursorHtml = isToday
+          ? `<div class="mini-bar-time-cursor" style="left: ${(currentSelectedMinutes / 1440) * 100}%;"></div>`
+          : '';
+
         weeklyRows += `
           <div class="weekly-day-row ${isToday ? 'current-day-active' : ''}">
-            <span class="schedule-day-label">${DAY_SHORTS[d]}${isToday ? ' (Today)' : ''}</span>
-            <span class="schedule-time-text">${hStr}</span>
+            <div class="weekly-day-text-row">
+              <span class="schedule-day-label">${DAY_SHORTS[d]}${isToday ? ' (Today)' : ''}</span>
+              <span class="schedule-time-text">${hStr}</span>
+            </div>
+            <div class="weekly-mini-bar-track ${isClosed ? 'is-closed-track' : ''}">
+              ${segmentsHtml}
+              ${cursorHtml}
+            </div>
           </div>
         `;
       });
