@@ -7271,7 +7271,7 @@ const SPOTS_DATA = [
       }
     }
 
-    // 2. Not currently open: check upcoming shift today (e.g. afternoon re-opening)
+    // 2. Not currently open: check upcoming shift today (e.g. morning/afternoon opening)
     for (let i = 0; i < intervals.length; i++) {
       const itv = intervals[i];
       if (itv.open > testMinute) {
@@ -7286,7 +7286,7 @@ const SPOTS_DATA = [
         } else {
           return {
             status: 'closed',
-            badgeText: `Closed • Opens at ${itv.openStr}`,
+            badgeText: `Opens at ${itv.openStr}`,
             badgeClass: 'closed',
             minLeft: null
           };
@@ -7297,7 +7297,7 @@ const SPOTS_DATA = [
     // 3. All shifts for today have finished
     return {
       status: 'closed',
-      badgeText: 'Closed for the day',
+      badgeText: 'Closed for today',
       badgeClass: 'closed',
       minLeft: null
     };
@@ -7325,6 +7325,22 @@ const SPOTS_DATA = [
     }
     saveFavorites();
     render();
+  };
+
+  window.selectDayFromDrawer = function(dayName) {
+    isLiveMode = false;
+    const liveBtn = document.getElementById('btnLiveReset');
+    if (liveBtn) liveBtn.classList.remove('active');
+
+    currentSelectedDay = dayName;
+
+    document.querySelectorAll('.day-selector-btn').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-day') === currentSelectedDay);
+    });
+
+    updateTimeDisplay(currentSelectedMinutes);
+    render();
+    showToast(`Viewing ${dayName} schedule`);
   };
 
   window.toggleDrawer = function(spotId, btn) {
@@ -7528,12 +7544,7 @@ const SPOTS_DATA = [
 
       const isExpanded = openDrawers.has(spot.id);
 
-      let weeklyRows = `
-        <div class="weekly-tray-header-meta">
-          <span>Schedule & Shifts</span>
-          <span>12a · · 6a · · 12p · · 6p · · 12a</span>
-        </div>
-      `;
+      let weeklyRows = '';
 
       dayOrder.forEach(d => {
         const s = spot.schedule[d];
@@ -7564,9 +7575,9 @@ const SPOTS_DATA = [
           : '';
 
         weeklyRows += `
-          <div class="weekly-day-row ${isToday ? 'current-day-active' : ''}">
+          <div class="weekly-day-row ${isToday ? 'current-day-active' : ''}" onclick="selectDayFromDrawer('${d}')" title="Click to view all locations on ${d}">
             <div class="weekly-day-text-row">
-              <span class="schedule-day-label">${DAY_SHORTS[d]}${isToday ? ' (Today)' : ''}</span>
+              <span class="schedule-day-label">${DAY_SHORTS[d]}${isToday ? ' (Selected)' : ''}</span>
               <span class="schedule-time-text">${hStr}</span>
             </div>
             <div class="weekly-mini-bar-track ${isClosed ? 'is-closed-track' : ''}">
