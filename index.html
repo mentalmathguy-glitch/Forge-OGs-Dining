@@ -514,35 +514,6 @@
       box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
     }
 
-    /* List View Toggle Button in Search Panel */
-    .btn-view-toggle {
-      height: 46px;
-      background: var(--input-bg);
-      color: var(--text-muted);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 0 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-
-    .btn-view-toggle:hover {
-      color: var(--text-main);
-      border-color: var(--border-medium);
-    }
-
-    .btn-view-toggle.active {
-      color: var(--neon-cyan);
-      border-color: var(--neon-cyan-border);
-      background: var(--neon-cyan-bg);
-    }
-
     /* Neon Cyan Distance Badge (Inline with Swipe Tags) */
     .badge-distance-tag {
       font-size: 0.72rem;
@@ -862,22 +833,22 @@
       box-shadow: 0 0 12px rgba(255, 0, 122, 0.4);
     }
 
-    /* Saved (Warm Amber) */
+    /* Saved (Electric Violet / Purple) */
     .filter-chip-btn.chip-saved {
-      color: #f59e0b;
-      border-color: rgba(245, 158, 11, 0.35);
-      background: rgba(245, 158, 11, 0.06);
+      color: #c084fc;
+      border-color: rgba(168, 85, 247, 0.35);
+      background: rgba(168, 85, 247, 0.06);
     }
     .filter-chip-btn.chip-saved:hover {
-      background: rgba(245, 158, 11, 0.14);
-      border-color: #f59e0b;
-      color: #fbbf24;
+      background: rgba(168, 85, 247, 0.14);
+      border-color: #a855f7;
+      color: #d8b4fe;
     }
     .filter-chip-btn.chip-saved.active {
-      background: #f59e0b;
-      color: #04101a;
-      border-color: #f59e0b;
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+      background: #a855f7;
+      color: #ffffff;
+      border-color: #a855f7;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
     }
 
     /* Closing Soon (Coral Orange) */
@@ -1485,19 +1456,13 @@
                 <input type="text" id="mainSearchInput" class="search-input-field" placeholder="Search dining, zone, building, cuisine, swipes...">
                 <button class="btn-clear-search" id="btnClearSearch" aria-label="Clear">&times;</button>
               </div>
-              <div class="search-controls-subrow d-flex gap-2">
-                <div class="search-select-wrap">
-                  <select id="sortDropdownSelect" class="sort-select-dropdown" aria-label="Sort Options">
-                    <option value="status">Sort: Status & Saved</option>
-                    <option value="distance">Sort: Nearest Distance</option>
-                    <option value="name">Sort: Name (A - Z)</option>
-                    <option value="closing">Sort: Closing Soonest</option>
-                  </select>
-                </div>
-                <button class="btn-view-toggle" id="btnViewToggle" title="Toggle List / Grid View">
-                  <i class="bi bi-list-ul" id="viewToggleIcon"></i>
-                  <span id="viewToggleLabel">List</span>
-                </button>
+              <div class="search-select-wrap">
+                <select id="sortDropdownSelect" class="sort-select-dropdown" aria-label="Sort Options">
+                  <option value="status">Sort: Status & Saved</option>
+                  <option value="distance">Sort: Nearest Distance</option>
+                  <option value="name">Sort: Name (A - Z)</option>
+                  <option value="closing">Sort: Closing Soonest</option>
+                </select>
               </div>
             </div>
 
@@ -7735,13 +7700,6 @@ const SPOTS_DATA = [
     const grid = document.getElementById('directoryCardGrid');
     if (grid) grid.classList.toggle('list-view', isListView);
 
-    const btnToggle = document.getElementById('btnViewToggle');
-    const toggleIcon = document.getElementById('viewToggleIcon');
-    const toggleLabel = document.getElementById('viewToggleLabel');
-    if (btnToggle) btnToggle.classList.toggle('active', isListView);
-    if (toggleIcon) toggleIcon.className = isListView ? 'bi bi-grid-fill' : 'bi bi-list-ul';
-    if (toggleLabel) toggleLabel.textContent = isListView ? 'Grid' : 'List';
-
     const btnGrid = document.getElementById('btnSwitchGrid');
     const btnList = document.getElementById('btnSwitchList');
     if (btnGrid) btnGrid.classList.toggle('active', !isListView);
@@ -7750,11 +7708,9 @@ const SPOTS_DATA = [
 
   const btnSwitchGrid = document.getElementById('btnSwitchGrid');
   const btnSwitchList = document.getElementById('btnSwitchList');
-  const btnViewToggle = document.getElementById('btnViewToggle');
 
   if (btnSwitchGrid) btnSwitchGrid.addEventListener('click', () => setViewMode(false));
   if (btnSwitchList) btnSwitchList.addEventListener('click', () => setViewMode(true));
-  if (btnViewToggle) btnViewToggle.addEventListener('click', () => setViewMode(!isListView));
 
   // Initialize
   setLiveTime();
