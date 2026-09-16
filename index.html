@@ -761,54 +761,122 @@
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
+      justify-content: center;
+      padding: 7px 15px;
       font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      background: var(--card-bg);
-      border: 1px solid var(--border-subtle);
+      font-weight: 600;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
     }
 
-    .filter-chip-btn:hover {
+    /* All Filter */
+    .filter-chip-btn.chip-all {
+      border-color: #26334a;
       color: var(--text-main);
-      border-color: var(--border-medium);
     }
-
-    .filter-chip-btn.active {
-      background: #192233;
+    .filter-chip-btn.chip-all:hover {
+      border-color: #475569;
+      background: #182030;
+    }
+    .filter-chip-btn.chip-all.active {
+      background: #1e293b;
       color: #ffffff;
-      border-color: #3b4b6d;
-      font-weight: 600;
+      border-color: #64748b;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
     }
 
-    .filter-chip-btn.chip-basic.active {
-      background: var(--neon-yellow-bg);
-      color: var(--neon-yellow);
-      border-color: var(--neon-yellow-border);
+    /* Open Now (Emerald Green) */
+    .filter-chip-btn.chip-open {
+      color: #10b981;
+      border-color: rgba(16, 185, 129, 0.35);
+      background: rgba(16, 185, 129, 0.06);
     }
-
-    .filter-chip-btn.chip-plus.active {
-      background: var(--neon-pink-bg);
-      color: var(--neon-pink);
-      border-color: var(--neon-pink-border);
+    .filter-chip-btn.chip-open:hover {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: #10b981;
+      color: #34d399;
     }
-
     .filter-chip-btn.chip-open.active {
-      background: var(--status-open-bg);
-      color: var(--status-open);
-      border-color: var(--status-open-border);
+      background: #10b981;
+      color: #04101a;
+      border-color: #10b981;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
     }
 
-    .status-chip-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--status-open);
-      display: inline-block;
+    /* Basic Swipe (Neon Yellow) */
+    .filter-chip-btn.chip-basic {
+      color: var(--neon-yellow);
+      border-color: rgba(255, 230, 0, 0.35);
+      background: rgba(255, 230, 0, 0.06);
+    }
+    .filter-chip-btn.chip-basic:hover {
+      background: rgba(255, 230, 0, 0.14);
+      border-color: var(--neon-yellow);
+      color: #fff480;
+    }
+    .filter-chip-btn.chip-basic.active {
+      background: var(--neon-yellow);
+      color: #04101a;
+      border-color: var(--neon-yellow);
+      box-shadow: 0 0 12px rgba(255, 230, 0, 0.4);
+    }
+
+    /* PLUS+ Swipe (Neon Pink) */
+    .filter-chip-btn.chip-plus {
+      color: var(--neon-pink);
+      border-color: rgba(255, 0, 122, 0.35);
+      background: rgba(255, 0, 122, 0.06);
+    }
+    .filter-chip-btn.chip-plus:hover {
+      background: rgba(255, 0, 122, 0.14);
+      border-color: var(--neon-pink);
+      color: #ff66b2;
+    }
+    .filter-chip-btn.chip-plus.active {
+      background: var(--neon-pink);
+      color: #ffffff;
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 12px rgba(255, 0, 122, 0.4);
+    }
+
+    /* Saved (Warm Amber) */
+    .filter-chip-btn.chip-saved {
+      color: #f59e0b;
+      border-color: rgba(245, 158, 11, 0.35);
+      background: rgba(245, 158, 11, 0.06);
+    }
+    .filter-chip-btn.chip-saved:hover {
+      background: rgba(245, 158, 11, 0.14);
+      border-color: #f59e0b;
+      color: #fbbf24;
+    }
+    .filter-chip-btn.chip-saved.active {
+      background: #f59e0b;
+      color: #04101a;
+      border-color: #f59e0b;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Closing Soon (Coral Orange) */
+    .filter-chip-btn.chip-warning {
+      color: #fb923c;
+      border-color: rgba(251, 146, 60, 0.35);
+      background: rgba(251, 146, 60, 0.06);
+    }
+    .filter-chip-btn.chip-warning:hover {
+      background: rgba(251, 146, 60, 0.14);
+      border-color: #fb923c;
+      color: #fdba74;
+    }
+    .filter-chip-btn.chip-warning.active {
+      background: #fb923c;
+      color: #04101a;
+      border-color: #fb923c;
+      box-shadow: 0 0 12px rgba(251, 146, 60, 0.4);
     }
 
     /* Human Time Inspector Bar */
@@ -1417,17 +1485,14 @@
             <!-- Segmented Category Tabs -->
             <div class="category-tabs-rail justify-content-center">
               <button class="category-tab-btn active" data-mode="dining">
-                <i class="bi bi-cup-hot" style="color: var(--neon-yellow);"></i>
                 <span>Dining & Cafes</span>
                 <span class="tab-pill-count" id="countBadgeDining">0</span>
               </button>
               <button class="category-tab-btn" data-mode="campus">
-                <i class="bi bi-buildings" style="color: var(--neon-cyan);"></i>
                 <span>Campus Hubs</span>
                 <span class="tab-pill-count" id="countBadgeCampus">0</span>
               </button>
               <button class="category-tab-btn" data-mode="all">
-                <i class="bi bi-grid-3x3-gap" style="color: var(--neon-pink);"></i>
                 <span>All Locations</span>
                 <span class="tab-pill-count" id="countBadgeAll">0</span>
               </button>
@@ -1441,14 +1506,14 @@
     <!-- Main Directory Section -->
     <div class="container">
 
-      <!-- Filter Chips Rail -->
+      <!-- Filter Chips Rail (Pure Text & Color-Differentiated) -->
       <div class="filter-chips-rail">
-        <button class="filter-chip-btn active" data-filter="all">All (<span id="statAllCount">0</span>)</button>
-        <button class="filter-chip-btn chip-open" data-filter="open"><span class="status-chip-dot"></span> Open Now (<span id="statOpenCount">0</span>)</button>
-        <button class="filter-chip-btn chip-basic" data-filter="basic" data-modes="dining,all"><i class="bi bi-check2-circle"></i> Basic Swipe (<span id="statBasicCount">0</span>)</button>
-        <button class="filter-chip-btn chip-plus" data-filter="plus" data-modes="dining,all"><i class="bi bi-lightning-charge"></i> PLUS+ Swipe (<span id="statPlusCount">0</span>)</button>
-        <button class="filter-chip-btn" data-filter="favorites"><i class="bi bi-bookmark-star"></i> Saved (<span id="statFavsCount">0</span>)</button>
-        <button class="filter-chip-btn" data-filter="warning"><i class="bi bi-hourglass-split"></i> Closing Soon (<span id="statWarningCount">0</span>)</button>
+        <button class="filter-chip-btn chip-all active" data-filter="all">All (<span id="statAllCount">0</span>)</button>
+        <button class="filter-chip-btn chip-open" data-filter="open">Open Now (<span id="statOpenCount">0</span>)</button>
+        <button class="filter-chip-btn chip-basic" data-filter="basic" data-modes="dining,all">Basic Swipe (<span id="statBasicCount">0</span>)</button>
+        <button class="filter-chip-btn chip-plus" data-filter="plus" data-modes="dining,all">PLUS+ Swipe (<span id="statPlusCount">0</span>)</button>
+        <button class="filter-chip-btn chip-saved" data-filter="favorites">Saved (<span id="statFavsCount">0</span>)</button>
+        <button class="filter-chip-btn chip-warning" data-filter="warning">Closing Soon (<span id="statWarningCount">0</span>)</button>
       </div>
 
       <!-- Human Time Inspector Card -->
@@ -7259,9 +7324,15 @@ const SPOTS_DATA = [
         render();
       },
       (err) => {
-        if (btn) btn.classList.remove('active');
-        if (label) label.textContent = 'Near Me';
-        if (!silent) showToast(err.code === 1 ? "Location permission denied" : "Unable to acquire location");
+        console.warn("Geolocation notice:", err);
+        // Smart fallback to Campus Center (Montview Student Union) if browser denies/blocks HTTP location
+        userLocation = { latitude: 37.3524, longitude: -79.1820 };
+        if (btn) btn.classList.add('active');
+        if (label) label.textContent = 'Campus Center';
+        if (!silent) {
+          showToast(err.code === 1 ? "Using Campus Center reference (Montview)" : "Location unavailable - using Campus Center");
+        }
+        render();
       },
       { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
     );
@@ -7464,16 +7535,14 @@ const SPOTS_DATA = [
             ` : ''}
 
             <div class="swipes-container">
-              ${spot.acceptsBasicSwipe ? `<span class="badge-basic-tag"><i class="bi bi-check2-circle"></i> Basic Swipe</span>` : ''}
-              ${spot.acceptsPlusSwipe ? `<span class="badge-plus-tag"><i class="bi bi-lightning-charge"></i> PLUS+ Swipe</span>` : ''}
+              ${spot.acceptsBasicSwipe ? `<span class="badge-basic-tag">Basic Swipe</span>` : ''}
+              ${spot.acceptsPlusSwipe ? `<span class="badge-plus-tag">PLUS+ Swipe</span>` : ''}
               ${spot.distanceStr ? `
                 <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="badge-distance-tag" title="Open walking directions in Google Maps">
-                  <i class="bi bi-geo-alt-fill"></i>
                   <span>${spot.distanceStr}</span>
                 </a>
               ` : `
                 <button class="badge-distance-tag badge-distance-prompt" onclick="requestUserLocation(false); event.stopPropagation();" title="Click to calculate live walking distance">
-                  <i class="bi bi-crosshair"></i>
                   <span>Distance</span>
                 </button>
               `}
@@ -7663,9 +7732,9 @@ const SPOTS_DATA = [
   setLiveTime();
   updateClock();
 
-  // Automatically prompt for location when site opens
+  // Load location in silent mode (falls back to Campus Center if HTTP/denied)
   if (navigator.geolocation) {
-    requestUserLocation(false);
+    requestUserLocation(true);
   }
   </script>
 </body>
