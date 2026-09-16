@@ -646,659 +646,156 @@
       padding: 0 2px;
     }
 
-    /* List View Styling (Mobile & Desktop) */
+    /* ==========================================================================
+       Super Duper Condensed List View (High Density Mobile & Desktop)
+       ========================================================================== */
+    #directoryCardGrid.list-view {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 6px !important;
+    }
+
     #directoryCardGrid.list-view .spot-col {
-      flex: 0 0 100%;
-      max-width: 100%;
-      margin-bottom: 12px;
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      margin-bottom: 0 !important;
+      padding: 0 !important;
     }
 
     #directoryCardGrid.list-view .directory-card {
-      border-radius: 10px;
+      border-radius: 8px !important;
+      background: var(--card-bg) !important;
+      border: 1px solid var(--border-subtle) !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      height: auto !important;
+      transition: all 0.15s ease !important;
+    }
+
+    #directoryCardGrid.list-view .directory-card:hover {
+      transform: none !important;
+      border-color: var(--border-medium) !important;
+      background: var(--card-bg-hover) !important;
     }
 
     #directoryCardGrid.list-view .card-top-bar {
-      padding: 10px 14px;
+      display: none !important;
     }
 
     #directoryCardGrid.list-view .card-body-content {
-      padding: 12px 16px;
-      gap: 8px;
+      padding: 8px 12px !important;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 10px !important;
+    }
+
+    .list-row-main-col {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .list-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     #directoryCardGrid.list-view .spot-heading {
-      font-size: 1.05rem;
+      font-size: 0.94rem !important;
+      font-weight: 700 !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0 !important;
+    }
+
+    .btn-fav-star-inline {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .btn-fav-star-inline.favorited {
+      color: #eab308;
+    }
+
+    #directoryCardGrid.list-view .btn-fav-star-inline {
+      display: inline-flex;
+    }
+
+    .list-sub-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.70rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    #directoryCardGrid.list-view .cuisine-description-text {
+      display: none !important;
     }
 
     #directoryCardGrid.list-view .hours-info-strip {
-      padding: 5px 10px;
+      display: none !important;
     }
 
-    /* Mobile Responsive Optimizations */
-    @media (max-width: 600px) {
-      .category-tabs-rail {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr 1fr !important;
-        gap: 5px !important;
-        margin-top: 12px !important;
-        padding: 0 !important;
-        width: 100% !important;
-      }
-      .category-tab-btn {
-        padding: 8px 3px !important;
-        font-size: 0.70rem !important;
-        font-weight: 600 !important;
-        gap: 4px !important;
-        justify-content: center !important;
-        text-align: center !important;
-        min-width: 0 !important;
-        width: 100% !important;
-      }
-      .category-tab-btn span:first-of-type {
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-      }
-      .category-tab-btn i {
-        font-size: 0.76rem !important;
-      }
-      .tab-pill-count {
-        padding: 1px 4px !important;
-        font-size: 0.60rem !important;
-        margin-left: 2px !important;
-      }
-      .search-panel {
-        gap: 6px !important;
-      }
-      .search-controls-subrow {
-        display: flex;
-        gap: 6px;
-        width: 100%;
-      }
-      .search-select-wrap {
-        flex: 1;
-        min-width: 0;
-      }
-      .btn-view-toggle {
-        padding: 0 10px;
-      }
-      .directory-view-control-bar {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 8px;
-      }
-      .directory-view-control-bar .view-switcher-pill-group {
-        align-self: flex-end;
-      }
-    }
-
-    /* Filter Chips Rail */
-    .filter-chips-rail {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      padding-bottom: 4px;
-    }
-
-    .filter-chips-rail::-webkit-scrollbar {
+    .list-row-right-col {
       display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+      flex-shrink: 0;
     }
 
-    .filter-chip-btn {
+    #directoryCardGrid.list-view .list-row-right-col {
+      display: flex !important;
+    }
+
+    #directoryCardGrid.list-view .status-badge-chip {
+      font-size: 0.68rem !important;
+      padding: 2px 7px !important;
       white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 15px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      background: var(--card-bg);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
     }
 
-    /* All Filter */
-    .filter-chip-btn.chip-all {
-      border-color: #26334a;
-      color: var(--text-main);
-    }
-    .filter-chip-btn.chip-all:hover {
-      border-color: #475569;
-      background: #182030;
-    }
-    .filter-chip-btn.chip-all.active {
-      background: #1e293b;
-      color: #ffffff;
-      border-color: #64748b;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
-    }
-
-    /* Open Now (Emerald Green) */
-    .filter-chip-btn.chip-open {
-      color: #10b981;
-      border-color: rgba(16, 185, 129, 0.35);
-      background: rgba(16, 185, 129, 0.06);
-    }
-    .filter-chip-btn.chip-open:hover {
-      background: rgba(16, 185, 129, 0.14);
-      border-color: #10b981;
-      color: #34d399;
-    }
-    .filter-chip-btn.chip-open.active {
-      background: #10b981;
-      color: #04101a;
-      border-color: #10b981;
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
-    }
-
-    /* Basic Swipe (Neon Yellow) */
-    .filter-chip-btn.chip-basic {
-      color: var(--neon-yellow);
-      border-color: rgba(255, 230, 0, 0.35);
-      background: rgba(255, 230, 0, 0.06);
-    }
-    .filter-chip-btn.chip-basic:hover {
-      background: rgba(255, 230, 0, 0.14);
-      border-color: var(--neon-yellow);
-      color: #fff480;
-    }
-    .filter-chip-btn.chip-basic.active {
-      background: var(--neon-yellow);
-      color: #04101a;
-      border-color: var(--neon-yellow);
-      box-shadow: 0 0 12px rgba(255, 230, 0, 0.4);
-    }
-
-    /* PLUS+ Swipe (Neon Pink) */
-    .filter-chip-btn.chip-plus {
-      color: var(--neon-pink);
-      border-color: rgba(255, 0, 122, 0.35);
-      background: rgba(255, 0, 122, 0.06);
-    }
-    .filter-chip-btn.chip-plus:hover {
-      background: rgba(255, 0, 122, 0.14);
-      border-color: var(--neon-pink);
-      color: #ff66b2;
-    }
-    .filter-chip-btn.chip-plus.active {
-      background: var(--neon-pink);
-      color: #ffffff;
-      border-color: var(--neon-pink);
-      box-shadow: 0 0 12px rgba(255, 0, 122, 0.4);
-    }
-
-    /* Saved (Electric Violet / Purple) */
-    .filter-chip-btn.chip-saved {
-      color: #c084fc;
-      border-color: rgba(168, 85, 247, 0.35);
-      background: rgba(168, 85, 247, 0.06);
-    }
-    .filter-chip-btn.chip-saved:hover {
-      background: rgba(168, 85, 247, 0.14);
-      border-color: #a855f7;
-      color: #d8b4fe;
-    }
-    .filter-chip-btn.chip-saved.active {
-      background: #a855f7;
-      color: #ffffff;
-      border-color: #a855f7;
-      box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
-    }
-
-    /* Closing Soon (Coral Orange) */
-    .filter-chip-btn.chip-warning {
-      color: #fb923c;
-      border-color: rgba(251, 146, 60, 0.35);
-      background: rgba(251, 146, 60, 0.06);
-    }
-    .filter-chip-btn.chip-warning:hover {
-      background: rgba(251, 146, 60, 0.14);
-      border-color: #fb923c;
-      color: #fdba74;
-    }
-    .filter-chip-btn.chip-warning.active {
-      background: #fb923c;
-      color: #04101a;
-      border-color: #fb923c;
-      box-shadow: 0 0 12px rgba(251, 146, 60, 0.4);
-    }
-
-    /* Human Time Inspector Bar */
-    .time-inspector-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 10px 16px;
-      margin-bottom: 24px;
-    }
-
-    .time-bar-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .time-bar-info {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      flex-wrap: wrap;
-    }
-
-    .time-display-pill {
+    .list-today-hours-text {
       font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-      color: var(--text-main);
-      background: var(--surface-subtle);
-      border: 1px solid var(--border-subtle);
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-    }
-
-    .time-bar-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-live-toggle {
-      font-size: 0.74rem;
-      font-weight: 700;
-      color: var(--status-open);
-      background: var(--status-open-bg);
-      border: 1px solid var(--status-open-border);
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: all 0.2s;
-    }
-
-    .btn-live-toggle.active {
-      background: var(--status-open);
-      color: #04101a;
-    }
-
-    .btn-adjust-drawer-toggle {
-      background: none;
-      border: none;
+      font-size: 0.68rem;
       color: var(--text-muted);
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      white-space: nowrap;
     }
 
-    .time-drawer-panel {
-      display: none;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-subtle);
-      flex-direction: column;
-      gap: 12px;
+    #directoryCardGrid.list-view .card-footer-actions {
+      padding: 4px 12px 5px !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+      background: transparent !important;
     }
 
-    .time-drawer-panel.open {
-      display: flex;
+    #directoryCardGrid.list-view .btn-toggle-weekly,
+    #directoryCardGrid.list-view .link-maps-directions {
+      font-size: 0.70rem !important;
+      padding: 0 !important;
     }
 
-    .days-picker-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-    }
-
-    .day-selector-btn {
-      padding: 8px 2px;
-      text-align: center;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      background: var(--input-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .day-selector-btn:hover {
-      color: var(--text-main);
-      border-color: var(--border-medium);
-    }
-
-    .day-selector-btn.active {
-      background: #192233;
-      color: #ffffff;
-      border-color: var(--border-medium);
-    }
-
-    .time-presets-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .preset-chips-wrap {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .preset-pill {
-      padding: 4px 10px;
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      background: var(--input-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .preset-pill:hover {
-      background: var(--surface-subtle);
-      color: var(--text-main);
-    }
-
-    .time-input-field {
-      height: 32px;
-      background: var(--input-bg);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      border-radius: 6px;
-      padding: 0 8px;
-      font-size: 0.78rem;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* Directory Listing Cards (.properties__card) */
-    .spot-col {
-      margin-bottom: 24px;
-    }
-
-    .directory-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    }
-
-    .directory-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--border-medium);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-    }
-
-    /* Card Top Header */
-    .card-top-bar {
-      position: relative;
-      background: linear-gradient(135deg, #151d2c 0%, #0d121c 100%);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .card-top-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .category-tag {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-muted);
-    }
-
-    .status-badge-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 50px;
-    }
-
-    .status-badge-chip.open {
-      color: var(--status-open);
-      background: var(--status-open-bg);
-      border: 1px solid var(--status-open-border);
-    }
-
-    .status-badge-chip.warning {
-      color: var(--status-warning);
-      background: var(--status-warning-bg);
-      border: 1px solid var(--status-warning-border);
-    }
-
-    .status-badge-chip.closed {
-      color: var(--status-closed);
-      background: var(--status-closed-bg);
-      border: 1px solid var(--status-closed-border);
-    }
-
-    .btn-fav-star {
-      background: var(--surface-subtle);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .btn-fav-star:hover {
-      color: #eab308;
-      border-color: #eab308;
-      transform: scale(1.1);
-    }
-
-    .btn-fav-star.favorited {
-      color: #eab308;
-      background: rgba(234, 179, 8, 0.15);
-      border-color: rgba(234, 179, 8, 0.4);
-    }
-
-    /* Card Content Body */
-    .card-body-content {
-      padding: 16px 18px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .spot-heading {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin: 0;
-      line-height: 1.3;
-    }
-
-    .spot-heading a {
-      color: var(--text-main);
-    }
-
-    .spot-heading a:hover {
-      color: var(--neon-cyan);
-    }
-
-    .spot-location-meta {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .spot-location-meta i {
-      color: var(--text-dim);
-    }
-
-    .distance-pill-badge {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--neon-cyan);
-      background: var(--neon-cyan-bg);
-      border: 1px solid var(--neon-cyan-border);
-      padding: 1px 7px;
-      border-radius: 50px;
-    }
-
-    .swipes-container {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .badge-basic-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--neon-yellow);
-      background: var(--neon-yellow-bg);
-      border: 1px solid var(--neon-yellow-border);
-      padding: 3px 8px;
-      border-radius: 4px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .badge-plus-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--neon-pink);
-      background: var(--neon-pink-bg);
-      border: 1px solid var(--neon-pink-border);
-      padding: 3px 8px;
-      border-radius: 4px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .cuisine-description-text {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    .hours-info-strip {
-      background: var(--input-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 7px 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.78rem;
-    }
-
-    .hours-info-label {
-      color: var(--text-dim);
-      font-weight: 500;
-    }
-
-    .hours-info-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    /* Card Footer Actions */
-    .card-footer-actions {
-      padding: 12px 18px;
-      border-top: 1px solid var(--border-subtle);
-      background: rgba(14, 18, 26, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .btn-toggle-weekly {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 4px 0;
-      transition: color 0.2s;
-    }
-
-    .btn-toggle-weekly:hover {
-      color: var(--text-main);
-    }
-
-    .btn-toggle-weekly i {
-      transition: transform 0.2s ease;
-      font-size: 0.75rem;
-    }
-
-    .btn-toggle-weekly[aria-expanded="true"] i {
-      transform: rotate(180deg);
-    }
-
-    .link-maps-directions {
-      color: var(--text-muted);
-      font-size: 0.78rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .link-maps-directions:hover {
-      color: var(--neon-cyan);
-    }
-
-    /* Weekly Schedule Drawer */
+    /* Weekly Schedule Drawer (Compact Table Format) */
     .weekly-schedule-tray {
       display: none;
-      background: #0a0d14;
+      background: #090c12;
       border-top: 1px solid var(--border-subtle);
-      padding: 10px 18px;
+      padding: 6px 12px 6px;
       flex-direction: column;
-      gap: 4px;
+      gap: 2px;
     }
 
     .weekly-schedule-tray.open {
@@ -1307,18 +804,66 @@
 
     .weekly-day-row {
       display: flex;
+      flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.75rem;
-      padding: 3px 6px;
+      font-size: 0.74rem;
+      padding: 4px 8px;
       border-radius: 4px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid transparent;
       color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+    }
+
+    .weekly-day-row:hover {
+      background: rgba(0, 240, 255, 0.08);
+      border-color: rgba(0, 240, 255, 0.25);
+      color: var(--text-main);
     }
 
     .weekly-day-row.current-day-active {
-      background: #192233;
+      background: rgba(0, 240, 255, 0.12);
+      border-color: rgba(0, 240, 255, 0.40);
       color: #ffffff;
-      font-weight: 700;
+      font-weight: 600;
+    }
+
+    .schedule-day-label-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .real-today-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #10b981;
+      box-shadow: 0 0 6px #10b981;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .schedule-day-label {
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .schedule-time-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-main);
+      text-align: right;
+      margin-left: 10px;
+    }
+
+    .weekly-day-row.current-day-active .schedule-time-text {
+      color: #ffffff;
+      font-weight: 600;
     }
 
     .schedule-day-label {
@@ -7384,8 +6929,10 @@ const SPOTS_DATA = [
 
       const hoursLabel = card.querySelector('.hours-info-label');
       const hoursVal = card.querySelector('.hours-info-value');
+      const listHoursVal = card.querySelector('.list-today-hours-text');
       if (hoursLabel) hoursLabel.textContent = `${currentSelectedDay} Hours:`;
       if (hoursVal) hoursVal.textContent = todayHoursDisplay;
+      if (listHoursVal) listHoursVal.textContent = todayHoursDisplay;
 
       // 3. Update Weekly Drawer Day Rows
       const dayRows = card.querySelectorAll('.weekly-day-row');
@@ -7660,7 +7207,6 @@ const SPOTS_DATA = [
       const isExpanded = openDrawers.has(spot.id);
 
       let weeklyRows = '';
-
       const realTodayName = DAYS[new Date().getDay()];
 
       dayOrder.forEach(d => {
@@ -7673,40 +7219,19 @@ const SPOTS_DATA = [
           : ((!isClosed && s.open !== null && s.close !== null) ? [{ open: s.open, close: s.close, openStr: s.openStr, closeStr: s.closeStr }] : []);
 
         let hStr = 'Closed';
-        let segmentsHtml = '';
         if (!isClosed && intervals.length > 0) {
           hStr = intervals.map(itv => `${itv.openStr} - ${itv.closeStr}`).join(', ');
-          intervals.forEach(itv => {
-            let leftPct = (itv.open / 1440) * 100;
-            let widthPct = 0;
-            if (itv.close >= itv.open) {
-              widthPct = ((itv.close - itv.open) / 1440) * 100;
-            } else {
-              widthPct = ((1440 - itv.open + itv.close) / 1440) * 100;
-            }
-            segmentsHtml += `<div class="mini-bar-segment-open" style="left: ${leftPct}%; width: ${widthPct}%;"></div>`;
-          });
         }
-
-        const cursorHtml = isSelected
-          ? `<div class="mini-bar-time-cursor" style="left: ${(currentSelectedMinutes / 1440) * 100}%;"></div>`
-          : '';
 
         const labelText = isRealToday ? `${DAY_SHORTS[d]} (Today)` : (isSelected ? `${DAY_SHORTS[d]} (Selected)` : DAY_SHORTS[d]);
 
         weeklyRows += `
           <div class="weekly-day-row ${isSelected ? 'current-day-active' : ''}" data-day="${d}" onclick="selectDayFromDrawer('${d}', event)" title="Click to view all locations on ${d}">
-            <div class="weekly-day-text-row">
-              <div class="schedule-day-label-group">
-                ${isRealToday ? '<span class="real-today-dot" title="Current Day (Today)"></span>' : ''}
-                <span class="schedule-day-label">${labelText}</span>
-              </div>
-              <span class="schedule-time-text">${hStr}</span>
+            <div class="schedule-day-label-group">
+              ${isRealToday ? '<span class="real-today-dot" title="Today"></span>' : ''}
+              <span class="schedule-day-label">${labelText}</span>
             </div>
-            <div class="weekly-mini-bar-track ${isClosed ? 'is-closed-track' : ''}">
-              ${segmentsHtml}
-              ${cursorHtml}
-            </div>
+            <span class="schedule-time-text">${hStr}</span>
           </div>
         `;
       });
@@ -7718,7 +7243,7 @@ const SPOTS_DATA = [
 
       col.innerHTML = `
         <div class="directory-card" data-id="${spot.id}">
-          <!-- Card Top Bar -->
+          <!-- Card Top Bar (Grid View) -->
           <div class="card-top-bar">
             <div class="card-top-left">
               <span class="category-tag">${spot.category}</span>
@@ -7732,33 +7257,46 @@ const SPOTS_DATA = [
             </button>
           </div>
 
-          <!-- Card Body Content -->
+          <!-- Card Body Content (Grid & Condensed List) -->
           <div class="card-body-content">
-            <h3 class="spot-heading"><a href="${mapsUrl}" target="_blank" rel="noopener noreferrer">${displayName}</a></h3>
-
-            ${spot.zone ? `
-              <div class="spot-location-meta">
-                <i class="bi bi-geo-alt"></i>
-                <span>${spot.zone}</span>
-              </div>
-            ` : ''}
-
-            <div class="swipes-container">
-              ${spot.acceptsBasicSwipe ? `<span class="badge-basic-tag">Basic Swipe</span>` : ''}
-              ${spot.acceptsPlusSwipe ? `<span class="badge-plus-tag">PLUS+ Swipe</span>` : ''}
-              ${spot.distanceStr ? `
-                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="badge-distance-tag" title="Open walking directions in Google Maps">
-                  <span>${spot.distanceStr}</span>
-                </a>
-              ` : `
-                <button class="badge-distance-tag badge-distance-prompt" onclick="requestUserLocation(false); event.stopPropagation();" title="Click to calculate live walking distance">
-                  <span>Distance</span>
+            <div class="list-row-main-col">
+              <div class="list-title-row">
+                <h3 class="spot-heading"><a href="${mapsUrl}" target="_blank" rel="noopener noreferrer">${displayName}</a></h3>
+                <button class="btn-fav-star-inline ${spot.isFav ? 'favorited' : ''}" onclick="toggleFavorite('${spot.id}', this, event)" title="Save spot">
+                  <i class="bi ${spot.isFav ? 'bi-star-fill' : 'bi-star'}"></i>
                 </button>
-              `}
+              </div>
+
+              <div class="list-sub-meta">
+                ${spot.zone ? `<span class="spot-location-meta"><i class="bi bi-geo-alt"></i> ${spot.zone}</span>` : ''}
+                <div class="swipes-container">
+                  ${spot.acceptsBasicSwipe ? `<span class="badge-basic-tag">Basic</span>` : ''}
+                  ${spot.acceptsPlusSwipe ? `<span class="badge-plus-tag">PLUS+</span>` : ''}
+                  ${spot.distanceStr ? `
+                    <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="badge-distance-tag" title="Open walking directions in Google Maps">
+                      <span>${spot.distanceStr}</span>
+                    </a>
+                  ` : `
+                    <button class="badge-distance-tag badge-distance-prompt" onclick="requestUserLocation(false); event.stopPropagation();" title="Click to calculate live walking distance">
+                      <span>Distance</span>
+                    </button>
+                  `}
+                </div>
+              </div>
+
+              ${spot.cuisine ? `<p class="cuisine-description-text mb-0">${spot.cuisine}</p>` : ''}
             </div>
 
-            ${spot.cuisine ? `<p class="cuisine-description-text mb-0">${spot.cuisine}</p>` : ''}
+            <!-- List View Right Column -->
+            <div class="list-row-right-col">
+              <div class="status-badge-chip ${spot.statusInfo.badgeClass}">
+                <span class="status-chip-dot" style="width: 5px; height: 5px; background: currentColor;"></span>
+                <span>${spot.statusInfo.badgeText}</span>
+              </div>
+              <div class="list-today-hours-text">${todayHoursDisplay}</div>
+            </div>
 
+            <!-- Grid View Hours Strip -->
             <div class="hours-info-strip mt-auto">
               <span class="hours-info-label">${currentSelectedDay} Hours:</span>
               <span class="hours-info-value">${todayHoursDisplay}</span>
