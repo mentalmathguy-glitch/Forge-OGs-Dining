@@ -1,0 +1,57 @@
+LU FOOD COMPASS • FILE DIRECTORY & OPTIONS GUIDE
+=====================================================
+Root Directory: C:\Users\User\Desktop\Forge-Dining-App
+
+-----------------------------------------------------
+1. ACTIVE APPLICATION FILES (Root Directory)
+-----------------------------------------------------
+- index.html           : Primary active website file.
+- styles.css           : Core stylesheet with dark theme & iOS safe-area notch padding.
+- app.js               : Interactive application engine (filters, live clock, time slider).
+- spots.js             : Complete dining locations, hours, meal swipe info & coordinates.
+- manifest.json        : PWA manifest for iOS & Android "Add to Home Screen".
+- sw.js                : Service worker for offline caching & high performance.
+- logo.jpg / logo.png  : Current active logo (Option 22).
+- apple-touch-icon.png : High-res 180x180 icon displayed on iPhone home screen.
+- website.zip          : Complete deployable bundle.
+
+-----------------------------------------------------
+2. NEWEST CLEAN OPTION 6 RE-ITERATIONS (Subfolder: logo-options/)
+-----------------------------------------------------
+Each folder contains full-res preview.jpg, logo.jpg, apple-touch-icon.png, and full PWA icon sets:
+
+• Option 22 (Pristine Option 6 Remake):
+  - Path: logo-options\lu-option-22-pristine-opt6-remake\
+  - Exact beloved Option 6 theme with clean diagonal cutlery (fork at NE, knife at SW) on a mathematically reconstructed, pristine concentric dial. Zero stray handles, zero smudges, crisp collegiate LU and polished gold bezel.
+  - [CURRENTLY ACTIVE]
+
+• Option 23 (Option 6 with Vertical Gold Needle):
+  - Path: logo-options\lu-option-23-vertical-gold-cutlery-needle\
+  - Exact Option 6 gold bezel and collegiate LU with single vertical gold needle (fork North, knife South) in complete alignment.
+
+• Option 24 (Option 6 with Symmetrical Twin Top Cutlery):
+  - Path: logo-options\lu-option-24-twin-top-cutlery-bezel\
+  - Option 6 bezel and LU with dual symmetrical cutlery flanking North at 11 o'clock and 1 o'clock.
+
+• Option 25 (Option 6 with Balanced Crossed Cutlery Star):
+  - Path: logo-options\lu-option-25-crossed-cutlery-star\
+  - Option 6 collegiate LU with a fully balanced 4-point crossed cutlery star where all ends are visible and symmetrical.
+
+• Previous Options (1 - 21) & Legacy options
+
+-----------------------------------------------------
+3. APP DESIGN VERSIONS (Subfolder: app-versions/)
+-----------------------------------------------------
+All previous versions are preserved untouched so you can test and use them anytime:
+
+• Version 1 (Live Listco): app-versions\option-1-current-live-listco\index.html
+• Version 2 (Classic Timeline Bars): app-versions\option-2-classic-timeline-bars\index.html
+• Version 3 (Atmospheric Parallax): app-versions\option-3-parallax-atmospheric\index.html
+• Version 4 (Test V1 Listco): app-versions\option-4-test-v1-listco\index.html
+
+-----------------------------------------------------
+4. HELPER SCRIPTS
+-----------------------------------------------------
+- switch-logo.bat    : Interactive prompt to swap active logo instantly (Options 1-16).
+- switch-version.bat : Interactive prompt to swap active design layout (Options 1-4).
+- start-server.bat   : Starts local web server for PC & mobile viewing.
