@@ -7327,7 +7327,123 @@ const SPOTS_DATA = [
     render();
   };
 
-  window.selectDayFromDrawer = function(dayName) {
+  function updateCardsStatusInPlace() {
+    const cards = document.querySelectorAll('.directory-card');
+    if (cards.length === 0) {
+      render();
+      return false;
+    }
+
+    let diningCount = 0;
+    let campusCount = 0;
+    let openCount = 0;
+    let warningCount = 0;
+    let basicCount = 0;
+    let plusCount = 0;
+    let modeTotal = 0;
+
+    const realTodayName = DAYS[new Date().getDay()];
+
+    cards.forEach(card => {
+      const spotId = card.getAttribute('data-id');
+      const spot = SPOTS_DATA.find(s => s.id === spotId);
+      if (!spot) return;
+
+      const statusInfo = getSpotStatus(spot, currentSelectedDay, currentSelectedMinutes);
+
+      const inMode = (currentMode === 'all') ||
+                     (currentMode === 'dining' && spot.category === 'Food & Dining') ||
+                     (currentMode === 'campus' && spot.category !== 'Food & Dining');
+      if (inMode) {
+        modeTotal++;
+        if (statusInfo.status === 'open' || statusInfo.status === 'warning') openCount++;
+        if (statusInfo.status === 'warning') warningCount++;
+        if (spot.acceptsBasicSwipe) basicCount++;
+        if (spot.acceptsPlusSwipe) plusCount++;
+      }
+
+      // 1. Update Status Badge
+      const badge = card.querySelector('.status-badge-chip');
+      if (badge) {
+        badge.className = `status-badge-chip ${statusInfo.badgeClass}`;
+        const textSpan = badge.querySelector('span:last-child');
+        if (textSpan) textSpan.textContent = statusInfo.badgeText;
+      }
+
+      // 2. Update Today's Hours Strip
+      const sched = spot.schedule[currentSelectedDay];
+      let todayHoursDisplay = 'Closed Today';
+      if (sched && !sched.closed) {
+        const itvs = (sched.intervals && sched.intervals.length > 0)
+          ? sched.intervals
+          : ((sched.open !== null && sched.close !== null) ? [{ openStr: sched.openStr, closeStr: sched.closeStr }] : []);
+        if (itvs.length > 0) {
+          todayHoursDisplay = itvs.map(itv => `${itv.openStr} - ${itv.closeStr}`).join(', ');
+        }
+      }
+
+      const hoursLabel = card.querySelector('.hours-info-label');
+      const hoursVal = card.querySelector('.hours-info-value');
+      if (hoursLabel) hoursLabel.textContent = `${currentSelectedDay} Hours:`;
+      if (hoursVal) hoursVal.textContent = todayHoursDisplay;
+
+      // 3. Update Weekly Drawer Day Rows
+      const dayRows = card.querySelectorAll('.weekly-day-row');
+      dayRows.forEach(row => {
+        const rowDay = row.getAttribute('data-day');
+        const isSelected = (rowDay === currentSelectedDay);
+        const isRealToday = (rowDay === realTodayName);
+
+        row.classList.toggle('current-day-active', isSelected);
+
+        const labelSpan = row.querySelector('.schedule-day-label');
+        if (labelSpan) {
+          labelSpan.textContent = isRealToday ? `${DAY_SHORTS[rowDay]} (Today)` : (isSelected ? `${DAY_SHORTS[rowDay]} (Selected)` : DAY_SHORTS[rowDay]);
+        }
+
+        const cursor = row.querySelector('.mini-bar-time-cursor');
+        if (isSelected) {
+          if (!cursor) {
+            const track = row.querySelector('.weekly-mini-bar-track');
+            if (track) {
+              const newCursor = document.createElement('div');
+              newCursor.className = 'mini-bar-time-cursor';
+              newCursor.style.left = `${(currentSelectedMinutes / 1440) * 100}%`;
+              track.appendChild(newCursor);
+            }
+          } else {
+            cursor.style.left = `${(currentSelectedMinutes / 1440) * 100}%`;
+          }
+        } else {
+          if (cursor) cursor.remove();
+        }
+      });
+
+      // Filter by open/warning visibility
+      const col = card.closest('.spot-col');
+      if (col) {
+        if (currentFilter === 'open') {
+          col.style.display = (statusInfo.status === 'open' || statusInfo.status === 'warning') ? '' : 'none';
+        } else if (currentFilter === 'warning') {
+          col.style.display = (statusInfo.status === 'warning') ? '' : 'none';
+        }
+      }
+    });
+
+    const statAll = document.getElementById('statAllCount');
+    const statOpen = document.getElementById('statOpenCount');
+    const statWarning = document.getElementById('statWarningCount');
+    const headerOpen = document.getElementById('headerOpenSpotsCount');
+    if (statAll) statAll.textContent = modeTotal;
+    if (statOpen) statOpen.textContent = openCount;
+    if (statWarning) statWarning.textContent = warningCount;
+    if (headerOpen) headerOpen.textContent = openCount;
+
+    return true;
+  }
+
+  window.selectDayFromDrawer = function(dayName, event) {
+    if (event) event.stopPropagation();
     isLiveMode = false;
     const liveBtn = document.getElementById('btnLiveReset');
     if (liveBtn) liveBtn.classList.remove('active');
@@ -7339,8 +7455,7 @@ const SPOTS_DATA = [
     });
 
     updateTimeDisplay(currentSelectedMinutes);
-    render();
-    showToast(`Viewing ${dayName} schedule`);
+    updateCardsStatusInPlace();
   };
 
   window.toggleDrawer = function(spotId, btn) {
@@ -7546,9 +7661,12 @@ const SPOTS_DATA = [
 
       let weeklyRows = '';
 
+      const realTodayName = DAYS[new Date().getDay()];
+
       dayOrder.forEach(d => {
         const s = spot.schedule[d];
-        const isToday = (d === currentSelectedDay);
+        const isSelected = (d === currentSelectedDay);
+        const isRealToday = (d === realTodayName);
         const isClosed = !s || s.closed;
         const intervals = (!isClosed && s.intervals && s.intervals.length > 0)
           ? s.intervals
@@ -7570,14 +7688,19 @@ const SPOTS_DATA = [
           });
         }
 
-        const cursorHtml = isToday
+        const cursorHtml = isSelected
           ? `<div class="mini-bar-time-cursor" style="left: ${(currentSelectedMinutes / 1440) * 100}%;"></div>`
           : '';
 
+        const labelText = isRealToday ? `${DAY_SHORTS[d]} (Today)` : (isSelected ? `${DAY_SHORTS[d]} (Selected)` : DAY_SHORTS[d]);
+
         weeklyRows += `
-          <div class="weekly-day-row ${isToday ? 'current-day-active' : ''}" onclick="selectDayFromDrawer('${d}')" title="Click to view all locations on ${d}">
+          <div class="weekly-day-row ${isSelected ? 'current-day-active' : ''}" data-day="${d}" onclick="selectDayFromDrawer('${d}', event)" title="Click to view all locations on ${d}">
             <div class="weekly-day-text-row">
-              <span class="schedule-day-label">${DAY_SHORTS[d]}${isToday ? ' (Selected)' : ''}</span>
+              <div class="schedule-day-label-group">
+                ${isRealToday ? '<span class="real-today-dot" title="Current Day (Today)"></span>' : ''}
+                <span class="schedule-day-label">${labelText}</span>
+              </div>
               <span class="schedule-time-text">${hStr}</span>
             </div>
             <div class="weekly-mini-bar-track ${isClosed ? 'is-closed-track' : ''}">
@@ -7699,7 +7822,7 @@ const SPOTS_DATA = [
       btn.classList.add('active');
       currentSelectedDay = btn.getAttribute('data-day');
       updateTimeDisplay(currentSelectedMinutes);
-      render();
+      updateCardsStatusInPlace();
     });
   });
 
@@ -7722,7 +7845,7 @@ const SPOTS_DATA = [
       if (liveBtn) liveBtn.classList.remove('active');
       const val = parseInt(e.target.value, 10);
       updateTimeDisplay(val);
-      render();
+      updateCardsStatusInPlace();
     });
   }
 
