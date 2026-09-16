@@ -1,6 +1,6 @@
 LU FOOD COMPASS • FILE DIRECTORY & OPTIONS GUIDE
 =====================================================
-Root Directory: C:\Users\User\Desktop\Forge-Dining-App
+Root Directory: C:\Users\User\Desktop\LU-Food-Compass
 
 -----------------------------------------------------
 1. ACTIVE APPLICATION FILES (Root Directory)

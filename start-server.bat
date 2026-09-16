@@ -10,4 +10,4 @@ echo   - iPhone via Tailscale : http://100.99.188.42:8080
 echo.
 echo Press Ctrl+C to stop the server.
 echo ===================================================
-python -m http.server 8080 --bind 0.0.0.0 --directory "C:\Users\User\Desktop\Forge-Dining-App"
+python -m http.server 8080 --bind 0.0.0.0 --directory "C:\Users\User\Desktop\LU-Food-Compass"
